@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-eval-harness"
+version = "0.1.0"
+description = "Offline eval harness for one tool-using production-readiness agent"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+agent-eval = "eval_harness.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

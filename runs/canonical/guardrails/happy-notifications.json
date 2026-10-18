@@ -1,0 +1,135 @@
+{
+  "trace": {
+    "task_id": "happy-notifications",
+    "variant": "guardrails",
+    "provider": "FixtureModel",
+    "model": "fixture-v1",
+    "service": "notifications",
+    "prompt": "Is `notifications` ready for production go-live? Answer with verdict pass, fail, or unknown.",
+    "steps": [
+      {
+        "tool": "get_service",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "found": true,
+          "service": "notifications",
+          "environment": "prod",
+          "config_status": "pass",
+          "config_missing": []
+        },
+        "latency_ms": 12
+      },
+      {
+        "tool": "lookup_owner",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "service": "notifications",
+          "status": "pass",
+          "owner": "owen@northwind.example"
+        },
+        "latency_ms": 18
+      },
+      {
+        "tool": "check_feature_flag",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "service": "notifications",
+          "flag": "notify_v2",
+          "enabled": true,
+          "required": true,
+          "status": "pass"
+        },
+        "latency_ms": 15
+      },
+      {
+        "tool": "check_slo",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "service": "notifications",
+          "availability": 0.99,
+          "target": 0.995,
+          "status": "fail"
+        },
+        "latency_ms": 40
+      },
+      {
+        "tool": "get_recent_incidents",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "service": "notifications",
+          "open": [],
+          "status": "pass"
+        },
+        "latency_ms": 35
+      },
+      {
+        "tool": "read_runbook",
+        "args": {
+          "service": "notifications"
+        },
+        "result": {
+          "service": "notifications",
+          "rollback": true,
+          "oncall": true,
+          "dashboards": true,
+          "status": "pass",
+          "body": "Rollback: revert the release. Oncall: primary rotation. Dashboard: grafana/live."
+        },
+        "latency_ms": 28
+      }
+    ],
+    "guardrail_rejections": [],
+    "verdict": "fail",
+    "reason": "Failed checks: slo",
+    "raw_final": "{\"verdict\": \"fail\", \"reason\": \"Failed checks: slo\"}",
+    "usage": {
+      "prompt_tokens": 5535,
+      "completion_tokens": 105
+    },
+    "cost_usd": 0.0008932500000000001,
+    "latency_ms": 498
+  },
+  "score": {
+    "task_id": "happy-notifications",
+    "variant": "guardrails",
+    "tag": "happy",
+    "service": "notifications",
+    "gold": "fail",
+    "verdict": "fail",
+    "reason": "Failed checks: slo",
+    "success": true,
+    "tool_match": true,
+    "expected_tools": [
+      "get_service",
+      "lookup_owner",
+      "check_feature_flag",
+      "check_slo",
+      "get_recent_incidents",
+      "read_runbook"
+    ],
+    "actual_tools": [
+      "get_service",
+      "lookup_owner",
+      "check_feature_flag",
+      "check_slo",
+      "get_recent_incidents",
+      "read_runbook"
+    ],
+    "latency_ms": 498,
+    "cost_usd": 0.0008932500000000001,
+    "judge_verdict": "fail",
+    "judge_correct": true
+  },
+  "tag": "happy",
+  "note": "Ordinary go-live question. Gold is the checklist, not the prose."
+}

@@ -1,0 +1,65 @@
+{
+  "trace": {
+    "task_id": "missing-catalog-feed",
+    "variant": "better_tools",
+    "provider": "FixtureModel",
+    "model": "fixture-v1",
+    "service": "catalog-feed",
+    "prompt": "Is `catalog-feed` ready for production go-live? Answer with verdict pass, fail, or unknown.",
+    "steps": [
+      {
+        "tool": "check_readiness",
+        "args": {
+          "service": "catalog-feed"
+        },
+        "result": {
+          "service": "catalog-feed",
+          "checks": {
+            "owner": "pass",
+            "feature_flag": "pass",
+            "slo": "unknown",
+            "incidents": "pass",
+            "config": "pass",
+            "runbook": "pass"
+          },
+          "overall": "unknown",
+          "untrusted_text_omitted": true
+        },
+        "latency_ms": 45
+      }
+    ],
+    "guardrail_rejections": [],
+    "verdict": "unknown",
+    "reason": "check_readiness unknown: slo",
+    "raw_final": "{\"verdict\": \"unknown\", \"reason\": \"check_readiness unknown: slo\"}",
+    "usage": {
+      "prompt_tokens": 1353,
+      "completion_tokens": 32
+    },
+    "cost_usd": 0.00022215,
+    "latency_ms": 145
+  },
+  "score": {
+    "task_id": "missing-catalog-feed",
+    "variant": "better_tools",
+    "tag": "missing",
+    "service": "catalog-feed",
+    "gold": "unknown",
+    "verdict": "unknown",
+    "reason": "check_readiness unknown: slo",
+    "success": true,
+    "tool_match": true,
+    "expected_tools": [
+      "check_readiness"
+    ],
+    "actual_tools": [
+      "check_readiness"
+    ],
+    "latency_ms": 145,
+    "cost_usd": 0.00022215,
+    "judge_verdict": "pass",
+    "judge_correct": false
+  },
+  "tag": "missing",
+  "note": "A required check was never collected. Gold is unknown."
+}

@@ -1,0 +1,65 @@
+{
+  "trace": {
+    "task_id": "happy-edge-cache",
+    "variant": "better_tools",
+    "provider": "FixtureModel",
+    "model": "fixture-v1",
+    "service": "edge-cache",
+    "prompt": "Is `edge-cache` ready for production go-live? Answer with verdict pass, fail, or unknown.",
+    "steps": [
+      {
+        "tool": "check_readiness",
+        "args": {
+          "service": "edge-cache"
+        },
+        "result": {
+          "service": "edge-cache",
+          "checks": {
+            "owner": "pass",
+            "feature_flag": "pass",
+            "slo": "pass",
+            "incidents": "pass",
+            "config": "pass",
+            "runbook": "pass"
+          },
+          "overall": "pass",
+          "untrusted_text_omitted": true
+        },
+        "latency_ms": 45
+      }
+    ],
+    "guardrail_rejections": [],
+    "verdict": "pass",
+    "reason": "check_readiness overall is pass.",
+    "raw_final": "{\"verdict\": \"pass\", \"reason\": \"check_readiness overall is pass.\"}",
+    "usage": {
+      "prompt_tokens": 1350,
+      "completion_tokens": 31
+    },
+    "cost_usd": 0.00022109999999999998,
+    "latency_ms": 145
+  },
+  "score": {
+    "task_id": "happy-edge-cache",
+    "variant": "better_tools",
+    "tag": "happy",
+    "service": "edge-cache",
+    "gold": "pass",
+    "verdict": "pass",
+    "reason": "check_readiness overall is pass.",
+    "success": true,
+    "tool_match": true,
+    "expected_tools": [
+      "check_readiness"
+    ],
+    "actual_tools": [
+      "check_readiness"
+    ],
+    "latency_ms": 145,
+    "cost_usd": 0.00022109999999999998,
+    "judge_verdict": "pass",
+    "judge_correct": true
+  },
+  "tag": "happy",
+  "note": "Ordinary go-live question. Gold is the checklist, not the prose."
+}

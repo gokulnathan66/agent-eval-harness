@@ -1,0 +1,65 @@
+{
+  "trace": {
+    "task_id": "missing-reviews-svc",
+    "variant": "better_tools",
+    "provider": "FixtureModel",
+    "model": "fixture-v1",
+    "service": "reviews-svc",
+    "prompt": "Is `reviews-svc` ready for production go-live? Answer with verdict pass, fail, or unknown.",
+    "steps": [
+      {
+        "tool": "check_readiness",
+        "args": {
+          "service": "reviews-svc"
+        },
+        "result": {
+          "service": "reviews-svc",
+          "checks": {
+            "owner": "pass",
+            "feature_flag": "pass",
+            "slo": "pass",
+            "incidents": "unknown",
+            "config": "pass",
+            "runbook": "pass"
+          },
+          "overall": "unknown",
+          "untrusted_text_omitted": true
+        },
+        "latency_ms": 45
+      }
+    ],
+    "guardrail_rejections": [],
+    "verdict": "unknown",
+    "reason": "check_readiness unknown: incidents",
+    "raw_final": "{\"verdict\": \"unknown\", \"reason\": \"check_readiness unknown: incidents\"}",
+    "usage": {
+      "prompt_tokens": 1352,
+      "completion_tokens": 32
+    },
+    "cost_usd": 0.000222,
+    "latency_ms": 145
+  },
+  "score": {
+    "task_id": "missing-reviews-svc",
+    "variant": "better_tools",
+    "tag": "missing",
+    "service": "reviews-svc",
+    "gold": "unknown",
+    "verdict": "unknown",
+    "reason": "check_readiness unknown: incidents",
+    "success": true,
+    "tool_match": true,
+    "expected_tools": [
+      "check_readiness"
+    ],
+    "actual_tools": [
+      "check_readiness"
+    ],
+    "latency_ms": 145,
+    "cost_usd": 0.000222,
+    "judge_verdict": "pass",
+    "judge_correct": false
+  },
+  "tag": "missing",
+  "note": "A required check was never collected. Gold is unknown."
+}
